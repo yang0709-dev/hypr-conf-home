@@ -1,0 +1,8 @@
+[terminal]
+shell = { program = "/usr/bin/zsh", args = ["-l"] }
+
+
+[font]
+normal = { family = "0xProto Nerd Font", style = "Regular" }
+bold = { family = "0xProto Nerd Font", style = "Bold" }
+italic = { family = "0xProto Nerd Font", style = "Italic" }

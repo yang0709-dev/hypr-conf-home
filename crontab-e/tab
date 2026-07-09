@@ -1,0 +1,1 @@
+*/20 * * * * /usr/local/bin/rotate.sh 2>/tmp/rotate.log

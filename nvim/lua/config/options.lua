@@ -4,3 +4,4 @@
 -- Add any additional options here
 
 vim.opt.virtualedit:append("onemore")
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"

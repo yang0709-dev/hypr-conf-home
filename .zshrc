@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='nvim'
+export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -113,3 +113,16 @@ alias wco='warp-cli connect'
 alias wdi='warp-cli disconnect'
 alias chw='/usr/local/bin/rotate.sh'
 alias bar='~/.config/waybar/scripts/launch.sh'
+
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init zsh)"
+alias copy='xclip -selection clipboard'
+alias n='nvim'
+alias pal='mpv --shuffle --loop-playlist ~/Music/palace'
+# alias docs='sudo systemctl'
+
+# if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+#   export MANPAGER="/usr/local/bin/nvr -c 'Man!' -o -"
+# fi
+export MANPAGER='nvim +Man!'
+alias cr='cargo run'

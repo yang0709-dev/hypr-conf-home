@@ -118,6 +118,7 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init zsh)"
 alias copy='xclip -selection clipboard'
 alias n='nvim'
+alias y='yazi'
 alias pal='mpv --shuffle --loop-playlist ~/Music/palace'
 # alias docs='sudo systemctl'
 
@@ -126,3 +127,8 @@ alias pal='mpv --shuffle --loop-playlist ~/Music/palace'
 # fi
 export MANPAGER='nvim +Man!'
 alias cr='cargo run'
+alias items='find . -maxdepth 1 -type f | wc -l'
+# brightness(+ XX% at the end)
+alias br='brightnessctl set'
+# localhost:8080
+alias yt='python3 ~/Documents/playground/youtube-local/server.py'

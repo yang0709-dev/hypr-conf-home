@@ -11,8 +11,7 @@
 	"modules-right": [
 		"memory",
 		"cpu",
-		"battery",
-		"custom/notification"
+		"battery"
 	],
 	"clock": {
 		"interval": 60,

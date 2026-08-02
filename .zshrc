@@ -118,17 +118,41 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init zsh)"
 alias copy='xclip -selection clipboard'
 alias n='nvim'
-alias y='yazi'
 alias pal='mpv --shuffle --loop-playlist ~/Music/palace'
-# alias docs='sudo systemctl'
-
-# if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
-#   export MANPAGER="/usr/local/bin/nvr -c 'Man!' -o -"
-# fi
 export MANPAGER='nvim +Man!'
 alias cr='cargo run'
 alias items='find . -maxdepth 1 -type f | wc -l'
+
 # brightness(+ XX% at the end)
 alias br='brightnessctl set'
-# localhost:8080
-alias yt='python3 ~/Documents/playground/youtube-local/server.py'
+
+# localhost:8080 ---> youtube-local
+alias ytl='python3 ~/Documents/playground/youtube-local/server.py'
+alias pco='protonvpn connect'
+alias pdi='protonvpn disconnect'
+
+# localhost:3000 ---> invidious
+alias yti='cd ~/podman/invidious-podman && ./start-invidious'
+export PATH="$PATH:$HOME/flutter/bin"
+alias c='codium'
+alias instop='podman stop invidious-podman-invidious-1 invidious-podman-companion-1 invidious-podman-invidious-db-1'
+
+alias rm='rm -I --preserve-root'
+# what you're referring to as linux is actually gnu/linux
+alias rms='rm ~/.config/BraveSoftware/Brave-Browser/SingletonLock'
+
+
+# add "link" to the end to download the video
+alias yt4='yt-dlp -f "bestvideo[height<=480]+bestaudio/best[height<=480]/best"'
+alias la='ls -a'
+alias docker='podman'
+alias zen='~/Documents/apps/zen/zen'
+
+
+
+# echo "link" | ydown
+# downloads 480p youtube video with backslashed links reformatted
+alias ydown='~/scripts/yt-down.sh'
+alias idown='~/scripts/in-down.sh'
+
+alias vid='cd ~/Videos && ls'

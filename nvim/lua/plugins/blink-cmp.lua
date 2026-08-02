@@ -10,7 +10,7 @@ return {
     keymap = {
       -- disables enter to select code suggestion and changes it to ctrl+enter
       ["<CR>"] = {},
-      ["<C-CR>"] = { "select_and_accept", "fallback" },
+      ["<C-\\>"] = { "select_and_accept", "fallback" },
 
       -- disables up/down to select the suggesions and changes it to ctrl+arrow
       ["<Up>"] = {},

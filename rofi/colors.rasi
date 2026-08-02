@@ -13,7 +13,10 @@
     on-secondary: #1b3437;
     on-secondary-fixed: #051f21;
     on-secondary-fixed-variant: #324b4d;
-    secondary-container: #324b4d;
+
+
+    // border of the whole container
+    secondary-container: #2aada6;
     on-secondary-container: #cce8ea;
     tertiary: #b7c7ea;
     tertiary-fixed: #d7e2ff;

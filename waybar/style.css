@@ -42,14 +42,14 @@ tooltip label{
     border-radius: 50px;
     color: transparent;
     background-color: @bg1;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 #workspaces button.active{
     background-color: @blue;
     color:@bg0;
     min-width: 50px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     font-size:13px;
 }
 

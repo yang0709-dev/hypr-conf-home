@@ -33,7 +33,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal = "alacritty"
+local terminal = "ghostty"
 local fileManager = "dolphin"
 local menu = "hyprlauncher"
 
@@ -61,8 +61,11 @@ end)
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCUROSR_THEME", "Breeze_Light")
+hl.env("XCURSOR_SIZE", "42")
+
+-- hl.env("HYPRCURSOR_THEME", "bibata")
+hl.env("HYPRCURSOR_SIZE", "40")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -89,7 +92,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
 	general = {
-		gaps_in = 5,
+		gaps_in = 3,
 		gaps_out = 5,
 
 		border_size = 2,
@@ -117,7 +120,7 @@ hl.config({
 		inactive_opacity = 0.6,
 
 		shadow = {
-			enabled = true,
+			enabled = false,
 			range = 4,
 			render_power = 3,
 			color = 0xee1a1a1a,
@@ -126,7 +129,7 @@ hl.config({
 		blur = {
 			enabled = true,
 			size = 4,
-			passes = 2,
+			passes = 3,
 			vibrancy = 0.1696,
 		},
 	},
@@ -139,143 +142,17 @@ hl.config({
 --------------------------------------------------------------------------------
 -- Animation Curves (Bezier)
 --------------------------------------------------------------------------------
-hl.curve("expressiveFastSpatial", {
-	type = "bezier",
-	points = { { 0.42, 1.67 }, { 0.21, 0.90 } },
-})
-hl.curve("expressiveSlowSpatial", {
-	type = "bezier",
-	points = { { 0.39, 1.29 }, { 0.35, 0.98 } },
-})
-hl.curve("expressiveDefaultSpatial", {
-	type = "bezier",
-	points = { { 0.38, 1.21 }, { 0.22, 1.00 } },
-})
-hl.curve("emphasizedDecel", {
-	type = "bezier",
-	points = { { 0.05, 0.7 }, { 0.1, 1 } },
-})
-hl.curve("emphasizedAccel", {
-	type = "bezier",
-	points = { { 0.3, 0 }, { 0.8, 0.15 } },
-})
-hl.curve("standardDecel", {
-	type = "bezier",
-	points = { { 0, 0 }, { 0, 1 } },
-})
-hl.curve("menu_decel", {
-	type = "bezier",
-	points = { { 0.1, 1 }, { 0, 1 } },
-})
-hl.curve("menu_accel", {
-	type = "bezier",
-	points = { { 0.52, 0.03 }, { 0.72, 0.08 } },
-})
-hl.curve("stall", {
-	type = "bezier",
-	points = { { 1, -0.1 }, { 0.7, 0.85 } },
-})
--- Configs
--- windows
-hl.animation({
-	leaf = "windowsIn",
-	enabled = true,
-	speed = 3,
-	bezier = "emphasizedDecel",
-	style = "popin 80%",
-})
-hl.animation({
-	leaf = "fadeIn",
-	enabled = true,
-	speed = 3,
-	bezier = "emphasizedDecel",
-})
-hl.animation({
-	leaf = "windowsOut",
-	enabled = true,
-	speed = 2,
-	bezier = "emphasizedDecel",
-	style = "popin 90%",
-})
-hl.animation({
-	leaf = "fadeOut",
-	enabled = true,
-	speed = 2,
-	bezier = "emphasizedDecel",
-})
-hl.animation({
-	leaf = "windowsMove",
-	enabled = true,
-	speed = 3,
-	bezier = "emphasizedDecel",
-	style = "slide",
-})
-hl.animation({
-	leaf = "border",
-	enabled = true,
-	speed = 10,
-	bezier = "emphasizedDecel",
-})
-
--- layers
-hl.animation({
-	leaf = "layersIn",
-	enabled = true,
-	speed = 2.7,
-	bezier = "emphasizedDecel",
-	style = "popin 93%",
-})
-hl.animation({
-	leaf = "layersOut",
-	enabled = true,
-	speed = 2.4,
-	bezier = "menu_accel",
-	style = "popin 94%",
-})
--- fade
-hl.animation({
-	leaf = "fadeLayersIn",
-	enabled = true,
-	speed = 0.5,
-	bezier = "menu_decel",
-})
-hl.animation({
-	leaf = "fadeLayersOut",
-	enabled = true,
-	speed = 2.7,
-	bezier = "stall",
-})
--- workspaces
-hl.animation({
-	leaf = "workspaces",
-	enabled = true,
-	speed = 5,
-	bezier = "menu_decel",
-	style = "fade",
-})
--- specialWorkspace
-hl.animation({
-	leaf = "specialWorkspaceIn",
-	enabled = true,
-	speed = 2.8,
-	bezier = "emphasizedDecel",
-	style = "slidevert",
-})
-hl.animation({
-	leaf = "specialWorkspaceOut",
-	enabled = true,
-	speed = 1.2,
-	bezier = "emphasizedAccel",
-	style = "slidevert",
-})
--- zoom
-hl.animation({
-	leaf = "zoomFactor",
-	enabled = true,
-	speed = 3,
-	bezier = "standardDecel",
-})
-
+hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
+hl.curve("easeOutExpo", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
+--------------------------------------------------------------------------------
+-- Animation Rules
+--------------------------------------------------------------------------------
+hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "myBezier" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "default", style = "popin 60%" })
+hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
+hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
+hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "easeOutExpo", style = "fade" })
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
@@ -537,3 +414,11 @@ hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "u" }), { de
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "d" }), { description = "Swap tiled window down" })
 
 --hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(/home/jupiter/.config/waybar/scripts/launch.sh))
+hl.config({ xwayland = { force_zero_scaling = true } })
+
+hl.layer_rule({
+	name = "blur-rofi",
+	match = { namespace = "rofi" },
+	dim_around = true,
+	animation = "popin 50%",
+})

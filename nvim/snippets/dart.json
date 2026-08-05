@@ -1,0 +1,34 @@
+{
+  "StatefulWidget":{
+    "prefix":"StatefulWidget",
+    "body":[
+      "class ${1:MyWidget} extends StatefulWidget {",
+      " const ${1:MyWidget}({super.key});",
+      "",
+      " @override",
+      " State<${1:MyWidget}> createState() => ${2:_MyWidgetState}();",
+      "}",
+      "",
+      "class ${2:_MyWidgetState} extends State<${1:MyWidget}> {",
+      " @override",
+      " Widget build(BuildContext context) {",
+      "   return const ${3:Placeholder}();",
+      " }",
+      "}"
+    ],
+    "description":"StatefulWidget template"
+  },
+  "StatelessWidget":{
+    "prefix":"StatelessWidget",
+    "body":[
+      "class ${1:MyWidget} extends StatelessWidget {",
+      " const ${1:MyWidget}({super.key});",
+      "",
+      " @override",
+      " Widget build(BuildContext context) {",
+      "   return const ${2:Placeholder}();",
+      " }",
+      "}"
+    ]
+  }
+}

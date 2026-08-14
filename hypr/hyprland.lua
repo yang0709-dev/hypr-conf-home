@@ -43,12 +43,14 @@ local menu = "hyprlauncher"
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
+local home = os.getenv("HOME")
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 hl.on("hyprland.start", function()
-	local home = os.getenv("HOME")
+	-- local home = os.getenv("HOME")
 	hl.exec_cmd(home .. "/.config/waybar/scripts/launch.sh")
 	hl.exec_cmd("swaync")
+	-- hl.exec_cmd("hyprlock")
 	hl.exec_cmd("awww-daemon &")
 	hl.exec_cmd("sleep 1 && bash /usr/local/bin/rotate.sh")
 end)
@@ -112,8 +114,8 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 10,
-		rounding_power = 2,
+		-- rounding = 10,
+		-- rounding_power = 2,
 
 		-- Change transparency of focused and unfocused windows
 		active_opacity = 0.8,
@@ -128,9 +130,9 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 4,
-			passes = 3,
-			vibrancy = 0.1696,
+			size = 2,
+			passes = 4,
+			vibrancy = 0.1596,
 		},
 	},
 
@@ -142,6 +144,7 @@ hl.config({
 --------------------------------------------------------------------------------
 -- Animation Curves (Bezier)
 --------------------------------------------------------------------------------
+
 hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 hl.curve("easeOutExpo", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
 --------------------------------------------------------------------------------
@@ -153,6 +156,7 @@ hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" }
 hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "easeOutExpo", style = "fade" })
+
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
@@ -231,13 +235,6 @@ hl.gesture({
 	action = "workspace",
 })
 
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.5,
-})
-
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -250,13 +247,14 @@ local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 -- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("wlogout"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 --hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+
+-- similar to super+v but its not fullscreen
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 --hl.bind(mainMod .. " + B", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("/home/jupiter/Documents/apps/zen/zen"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(home .. "/Documents/apps/zen/zen"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -277,42 +275,18 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+-- hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+-- hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-
 -- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+-- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+-- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+-- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -414,11 +388,42 @@ hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "u" }), { de
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "d" }), { description = "Swap tiled window down" })
 
 --hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(/home/jupiter/.config/waybar/scripts/launch.sh))
+
+-- fixes pixelated apps but i have no idea what this means
 hl.config({ xwayland = { force_zero_scaling = true } })
 
 hl.layer_rule({
 	name = "blur-rofi",
 	match = { namespace = "rofi" },
 	dim_around = true,
-	animation = "popin 50%",
+	animation = "popin 60%",
 })
+
+hl.config({
+	cursor = { inactive_timeout = 4 },
+})
+
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }), { desc = "Maximize" })
+-- terminal is the way to go
+-- hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
+--
+hl.window_rule({
+	match = { class = "vlc" },
+	opacity = "1.0 override 1.0 override 1.0 override",
+})
+
+hl.bind(
+	mainMod .. " + M",
+	hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
+	{ description = "Toggle Maximize Window" }
+)
+
+hl.window_rule({
+	match = { class = "virt-manager" },
+	opacity = "1.0 override 1.0 override 1.0 override",
+})
+
+-- hl.window_rule({
+-- 	match = { class = "" },
+-- 	opacity = "1.0 override 1.0 override 1.0 override",
+-- })

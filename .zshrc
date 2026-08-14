@@ -82,11 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -107,7 +107,7 @@ alias vo='alsamixer'
 alias zcon='nvim ~/.zshrc'
 alias re='source ~/.zshrc'
 alias dcu='docker compose up -d'
-alias acon='nvim ~/.config/alacritty/alacritty.toml'
+alias gcon='nvim ~/.config/ghostty/config.ghostty'
 alias ll='ls -lah'
 alias wco='warp-cli connect'
 alias wdi='warp-cli disconnect'
@@ -132,27 +132,31 @@ alias pco='protonvpn connect'
 alias pdi='protonvpn disconnect'
 
 # localhost:3000 ---> invidious
-alias yti='cd ~/podman/invidious-podman && ./start-invidious'
+alias yti='cd ~/Documents/self-hosting/Podman/invidious-podman && ./start-invidious'
 export PATH="$PATH:$HOME/flutter/bin"
 alias c='codium'
 alias instop='podman stop invidious-podman-invidious-1 invidious-podman-companion-1 invidious-podman-invidious-db-1'
 
 alias rm='rm -I --preserve-root'
 # what you're referring to as linux is actually gnu/linux
-alias rms='rm ~/.config/BraveSoftware/Brave-Browser/SingletonLock'
-
-
-# add "link" to the end to download the video
-alias yt4='yt-dlp -f "bestvideo[height<=480]+bestaudio/best[height<=480]/best"'
+alias rms='rm ~/.config/BraveSoftware/Brave-Browser/SingletonLock && brave-browser --password-store=basic & disown && exit'
 alias la='ls -a'
 alias docker='podman'
-alias zen='~/Documents/apps/zen/zen'
+alias zen='~/Documents/apps/zen/zen & disown'
 
+# yd "link" ==> donwload the video to ~/Videos/ and play it right after with vlc
+# supports both self-hosted invidious and youtube link
+alias yd='~/Scripts/id.sh'
+alias vid='cd ~/Videos && ls -t'
 
+# executes ls right after cd
+function cd {
+    # $@ expands all positional parameters as seperate words
+    builtin cd "$@" && ls -t
+}
+alias fr='flutter run'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# echo "link" | ydown
-# downloads 480p youtube video with backslashed links reformatted
-alias ydown='~/scripts/yt-down.sh'
-alias idown='~/scripts/in-down.sh'
-
-alias vid='cd ~/Videos && ls'
+alias bea='awww img "/home/jupiter/Pictures/desktop-wallpapers/stars.jpg"'
+alias ext='~/Scripts/ULTIMATE_EXTRACTOR_3000.sh'
+alias kbar='killall waybar'

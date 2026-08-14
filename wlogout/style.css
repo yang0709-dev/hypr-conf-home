@@ -2,7 +2,7 @@
 * {
     background-image: none;
     font-size: 20px;
-    font-family: "JetBrains Mono NFM";
+    /* font-family: "JetBrains Mono NFM"; */
 }
 
 @import './colors.css';
@@ -19,7 +19,7 @@ button {
     background-color: rgba(0, 0, 0, 0.5);
     outline-style: none;
     border-style: solid;
-	  border-width: 0px;
+	  border-width: 1px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 20%;
@@ -30,21 +30,29 @@ button {
 }
 
 button label{
-    margin: 70px 0 0 0;
+    margin: 100px 0 0 0;
 }
 
 button:hover,button:focus {
     background-color: @on_secondary_fixed_variant;
     background-size: 30%;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,0.5);
 }
 
 /* Adjust the size of the icon or content inside the button */
 button span {
     font-size: 1.2em; /* Increase the font size */
 }
+/* Adjust the size of the icon or content inside the button */
+button span {
+    font-size: 1.2em; /* Increase the font size */
+}
 
+/* Adjust the size of the icon or content inside the button */
+button span {
+    font-size: 1.2em; /* Increase the font size */
+}
 
 #lock {
     background-image: image(url("./icons/lock.png"));

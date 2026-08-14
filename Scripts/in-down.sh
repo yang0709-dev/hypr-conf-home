@@ -25,3 +25,12 @@ url="https://www.youtube.com/watch/?v=$vval"
 outdir="$HOME/Videos"
 
 yt-dlp -f "bestvideo[height<=480]+bestaudio/best[height<=480]/best" -P "$outdir" "$url"
+
+# Find the most recently downloaded file in outdir and play it in VLC
+file="$(ls -t "$outdir" 2>/dev/null | head -n 1)"
+if [[ -z "${file:-}" ]]; then
+  echo "Download finished but no output file was found in: $outdir" >&2
+  exit 1
+fi
+
+vlc "$outdir/$file"

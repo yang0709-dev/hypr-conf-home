@@ -38,7 +38,7 @@ SCRIPT_DIR=$(dirname "$0")
 
 # reads the help page
 if [[ "$1" == "--help" ]]; then
-  nvim $SCRIPT_DIR/help-ue3.md && exit 0
+  cat $SCRIPT_DIR/help-ue3.md | less && exit 0
 fi
 
 # loop all the arguements

@@ -12,15 +12,18 @@ SYNOPSIS
   ext [OPTION] ... [FILE(s)]
 
 DESCRIPTION
-  Extract all your extractable stuff, including everything in a directory, currently supports:
+  Extracts all your extractable stuff, including everything in a directory, currently supports:
   .tar.gz
   .tar.xz
+  .tar.bz2
   .zip
   .7z
 
 OPTIONS
   -d
     Deletes the original file.
+  --help
+    Shows this help manual.
 
 EXAMPLE
   

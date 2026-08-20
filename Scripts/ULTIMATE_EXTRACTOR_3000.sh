@@ -30,7 +30,7 @@ function extractFile() {
   fi
 
   if [ "$deleteMode" = true ] && [ -f "$file" ]; then
-    rm --preserve-root "$file" 2>/dev/null
+    rm --preserve-root "$file"
   fi
 }
 

@@ -49,7 +49,7 @@ local home = os.getenv("HOME")
 hl.on("hyprland.start", function()
 	-- local home = os.getenv("HOME")
 	hl.exec_cmd(home .. "/.config/waybar/scripts/launch.sh")
-	hl.exec_cmd("swaync")
+	-- hl.exec_cmd("swaync")
 	-- hl.exec_cmd("hyprlock")
 	hl.exec_cmd("awww-daemon &")
 	hl.exec_cmd("sleep 1 && bash /usr/local/bin/rotate.sh")
@@ -122,15 +122,15 @@ hl.config({
 		inactive_opacity = 0.6,
 
 		shadow = {
-			enabled = false,
-			range = 4,
-			render_power = 3,
+			enabled = true,
+			range = 15,
+			render_power = 5,
 			color = 0xee1a1a1a,
 		},
 
 		blur = {
 			enabled = true,
-			size = 2,
+			size = 3,
 			passes = 4,
 			vibrancy = 0.1596,
 		},
@@ -423,7 +423,10 @@ hl.window_rule({
 	opacity = "1.0 override 1.0 override 1.0 override",
 })
 
--- hl.window_rule({
--- 	match = { class = "" },
--- 	opacity = "1.0 override 1.0 override 1.0 override",
--- })
+hl.window_rule({
+	match = { class = "mullvadbrowser.real" },
+	opacity = "1.0 override 1.0 override 1.0 override",
+})
+--
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(home .. "/Scripts/touchToggle.sh"))
+hl.bind(mainMod .. " + Y", hl.dsp.layout("togglesplit"), { description = "Toggle split" })

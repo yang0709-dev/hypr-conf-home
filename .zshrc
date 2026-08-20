@@ -98,19 +98,12 @@ fi
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vo='alsamixer'
 alias zcon='nvim ~/.zshrc'
 alias re='source ~/.zshrc'
-alias dcu='docker compose up -d'
 alias gcon='nvim ~/.config/ghostty/config.ghostty'
-alias ll='ls -lah'
-alias wco='warp-cli connect'
-alias wdi='warp-cli disconnect'
+alias ll='eza -lah --icons=always'
 alias chw='/usr/local/bin/rotate.sh'
 alias bar='~/.config/waybar/scripts/launch.sh'
 
@@ -125,38 +118,38 @@ alias items='find . -maxdepth 1 -type f | wc -l'
 
 # brightness(+ XX% at the end)
 alias br='brightnessctl set'
-
-# localhost:8080 ---> youtube-local
-alias ytl='python3 ~/Documents/playground/youtube-local/server.py'
-alias pco='protonvpn connect'
-alias pdi='protonvpn disconnect'
-
 # localhost:3000 ---> invidious
 alias yti='cd ~/Documents/self-hosting/Podman/invidious-podman && ./start-invidious'
 export PATH="$PATH:$HOME/flutter/bin"
-alias c='codium'
 alias instop='podman stop invidious-podman-invidious-1 invidious-podman-companion-1 invidious-podman-invidious-db-1'
 
 alias rm='rm -I --preserve-root'
 # what you're referring to as linux is actually gnu/linux
 alias rms='rm ~/.config/BraveSoftware/Brave-Browser/SingletonLock && brave-browser --password-store=basic & disown && exit'
-alias la='ls -a'
+alias la='eza -a --icons=always'
 alias docker='podman'
 alias zen='~/Documents/apps/zen/zen & disown'
 
 # yd "link" ==> donwload the video to ~/Videos/ and play it right after with vlc
 # supports both self-hosted invidious and youtube link
 alias yd='~/Scripts/id.sh'
-alias vid='cd ~/Videos && ls -t'
+alias vid='cd ~/Videos && eza -t --icons=always'
 
 # executes ls right after cd
 function cd {
     # $@ expands all positional parameters as seperate words
-    builtin cd "$@" && ls -t
+    builtin cd "$@" && eza -t --icons=always
 }
 alias fr='flutter run'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias bea='awww img "/home/jupiter/Pictures/desktop-wallpapers/stars.jpg"'
 alias ext='~/Scripts/ULTIMATE_EXTRACTOR_3000.sh'
 alias kbar='killall waybar'
+
+alias ls='eza --icons=always'
+
+eval "$(starship init zsh)"
+alias zd='python ~/Scripts/zlib-de.py'
+alias bea='awww img /home/jupiter/Pictures/desktop-wallpapers/wallhaven-76xgze.jpg'
+alias des='~/Scripts/desktop-creator.sh'
+alias fc='~/Scripts/better-flutter-create.sh'

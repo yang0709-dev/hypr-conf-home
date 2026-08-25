@@ -150,6 +150,8 @@ alias ls='eza --icons=always'
 
 eval "$(starship init zsh)"
 alias zd='python ~/Scripts/zlib-de.py'
-alias bea='awww img /home/jupiter/Pictures/desktop-wallpapers/wallhaven-76xgze.jpg'
 alias des='~/Scripts/desktop-creator.sh'
 alias fc='~/Scripts/better-flutter-create.sh'
+alias a3='cp ~/Templates/AGPLv3 ./LICENSE'
+alias fj='firejail --net-none --private --private-tmp'
+alias e='exit'

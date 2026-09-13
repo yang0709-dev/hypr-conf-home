@@ -103,13 +103,12 @@ alias vo='alsamixer'
 alias zcon='nvim ~/.zshrc'
 alias re='source ~/.zshrc'
 alias gcon='nvim ~/.config/ghostty/config.ghostty'
-alias ll='eza -lah --icons=always'
+# alias ll='eza -lah --icons=always'
 alias chw='/usr/local/bin/rotate.sh'
 alias bar='~/.config/waybar/scripts/launch.sh'
 
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init zsh)"
-alias copy='xclip -selection clipboard'
 alias n='nvim'
 alias pal='mpv --shuffle --loop-playlist ~/Music/palace'
 export MANPAGER='nvim +Man!'
@@ -126,14 +125,12 @@ alias instop='podman stop invidious-podman-invidious-1 invidious-podman-companio
 alias rm='rm -I --preserve-root'
 # what you're referring to as linux is actually gnu/linux
 alias rms='rm ~/.config/BraveSoftware/Brave-Browser/SingletonLock && brave-browser --password-store=basic & disown && exit'
-alias la='eza -a --icons=always'
 alias docker='podman'
-alias zen='~/Documents/apps/zen/zen & disown'
-
+alias zen='~/Documents/apps/zen/zen-bin & disown'
 # yd "link" ==> donwload the video to ~/Videos/ and play it right after with vlc
 # supports both self-hosted invidious and youtube link
 alias yd='~/Scripts/id.sh'
-alias vid='cd ~/Videos && eza -t --icons=always'
+alias vid='cd ~/Videos && ls -t'
 
 # executes ls right after cd
 function cd {
@@ -141,17 +138,20 @@ function cd {
     builtin cd "$@" && eza -t --icons=always
 }
 alias fr='flutter run'
+# alias fr='~/Scripts/offline-flutter-run.sh'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias ext='~/Scripts/ULTIMATE_EXTRACTOR_3000.sh'
 alias kbar='killall waybar'
 
-alias ls='eza --icons=always'
+# alias ls='eza --icons=always'
 
 eval "$(starship init zsh)"
-alias zd='python ~/Scripts/zlib-de.py'
-alias des='~/Scripts/desktop-creator.sh'
 alias fc='~/Scripts/better-flutter-create.sh'
-alias a3='cp ~/Templates/AGPLv3 ./LICENSE'
 alias fj='firejail --net-none --private --private-tmp'
 alias e='exit'
+SAVEHIST=50000
+# source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+alias lz='ls -lZ'
+alias yd3='~/Scripts/id2.sh'
+alias ta='tmux attach'

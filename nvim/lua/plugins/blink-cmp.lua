@@ -16,13 +16,13 @@ return {
     keymap = {
       -- disables enter to select code suggestion and changes it to ctrl+enter
       ["<CR>"] = {},
-      ["<C-\\>"] = { "select_and_accept", "fallback" },
+      ["<A-y>"] = { "select_and_accept", "fallback" },
 
       -- disables up/down to select the suggesions and changes it to ctrl+arrow
       ["<Up>"] = {},
-      ["<C-Up>"] = { "select_prev", "fallback" },
+      ["<A-k>"] = { "select_prev", "fallback" },
       ["<Down>"] = {},
-      ["<C-Down>"] = { "select_next", "fallback" },
+      ["<A-j>"] = { "select_next", "fallback" },
     },
   },
 }

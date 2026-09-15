@@ -47,11 +47,14 @@ local home = os.getenv("HOME")
 hl.on("hyprland.start", function()
 	-- local home = os.getenv("HOME")
 	hl.exec_cmd(home .. "/.config/waybar/scripts/launch.sh")
-	-- hl.exec_cmd("swaync")
+	hl.exec_cmd("swaync")
 	-- hl.exec_cmd("hyprlock")
 	hl.exec_cmd("awww-daemon &")
 	hl.exec_cmd("hyprpm reload")
 	hl.exec_cmd("sleep 1 && bash /usr/local/bin/rotate.sh")
+	hl.exec_cmd("/usr/libexec/kf6/polkit-kde-authentication-agent-1")
+	-- hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	hl.exec_cmd(home .. "/Scripts/start-xdg-portal.sh")
 end)
 
 -------------------------------
@@ -90,7 +93,7 @@ hl.config({
 		border_size = 2,
 
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+			active_border = { colors = { "rgba(33ccffff)", "rgba(00ff99ff)" }, angle = 45 },
 			inactive_border = "rgba(595959aa)",
 		},
 
@@ -107,8 +110,8 @@ hl.config({
 		-- rounding = 10,
 		-- rounding_power = 2,
 		-- Change transparency of focused and unfocused windows
-		active_opacity = 0.8,
-		inactive_opacity = 0.6,
+		active_opacity = 0.85,
+		inactive_opacity = 0.7,
 
 		shadow = {
 			enabled = false,
@@ -204,7 +207,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 -- similar to super+v but its not fullscreen
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.layout("togglesplit")) -- dwindle only
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(home .. "/Documents/apps/zen/zen"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(home .. "/Documents/apps/zen/zen-bin"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -359,28 +362,28 @@ hl.bind(mainMod .. " + Y", hl.dsp.layout("togglesplit"), { description = "Toggle
 hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "e-1" }))
 
-hl.config({
-	plugin = {
-		scrolloverview = {
-			gesture_distance = 300, -- how far is the "max" for the gesture
-			scale = 0.7, -- preferred overview scale
-			workspace_gap = 50,
-			layout = "vertical", -- vertical or horizontal
-			wallpaper = 0, -- 0: global only, 1: per-workspace only, 2: both
-			blur = true, -- blur only the main overview wallpaper
-
-			shadow = {
-				enabled = false,
-				range = 10,
-			},
-		},
-	},
-})
+-- hl.config({
+-- 	plugin = {
+-- 		scrolloverview = {
+-- 			gesture_distance = 300, -- how far is the "max" for the gesture
+-- 			scale = 0.7, -- preferred overview scale
+-- 			workspace_gap = 50,
+-- 			layout = "vertical", -- vertical or horizontal
+-- 			wallpaper = 0, -- 0: global only, 1: per-workspace only, 2: both
+-- 			blur = true, -- blur only the main overview wallpaper
+--
+-- 			shadow = {
+-- 				enabled = false,
+-- 				range = 10,
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 -- Toggle ScrollOverview with SUPER+g
-hl.bind("SUPER + g", function()
-	hl.plugin.scrolloverview.overview("toggle all")
-end)
+-- hl.bind("SUPER + g", function()
+-- 	hl.plugin.scrolloverview.overview("toggle all")
+-- end)
 
 hl.layer_rule({
 	name = "nwg-bar",
@@ -390,3 +393,17 @@ hl.layer_rule({
 })
 
 hl.permission({ binary = "/usr/bin/hyprlock", type = "screencopy", mode = "allow" })
+
+hl.window_rule({
+	name = "xwayland-video-bridge-fixes",
+	match = {
+		class = "xwaylandvideobridge",
+	},
+
+	no_initial_focus = true,
+	no_focus = true,
+	no_anim = true,
+	no_blur = true,
+	max_size = { 1, 1 },
+	opacity = 0.0,
+})

@@ -31,5 +31,5 @@ vim.keymap.set("i", "<C-F>", "<C-Right>", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-p>", '"0p', {
   desc = "Paste from yank register",
 })
--- vim.keymap.set("n", "<leader>o", "o<Esc>", { noremap = true })
--- vim.keymap.set("n", "<leader>O", "O<Esc>", { noremap = true })
+vim.keymap.set("n", "q:", "<Nop>", { silent = true, desc = "Disable command history window" })
+vim.keymap.set("n", "Y", "yy")

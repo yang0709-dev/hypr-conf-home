@@ -24,5 +24,12 @@ return {
       ["<Down>"] = {},
       ["<A-j>"] = { "select_next", "fallback" },
     },
+
+    sources = {
+      providers = {
+        snippets = { score_offset = 100 },
+        lsp = { score_offset = 75 },
+      },
+    },
   },
 }

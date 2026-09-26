@@ -9,19 +9,25 @@
 		"tray"
 	],
 	"modules-right": [
-		"memory",
 		"cpu",
-		"battery"
+		"memory",
+		"battery",
+    "custom/notification"
 	],
 	"clock": {
 		"interval": 60,
 		"format": "{:%H:%M}",
-		"max-length": 25
+		"max-length": 25,
+    "tooltip-format": "<b>{:%A}</b>\n{:%d %B %Y}\n{:%H:%M:%S}"
 	},
 	"hyprland/workspaces": {
-		"format": "{name}",
+		"format": "{icon}",
+    "format-icons":{
+      "10":"0"
+    },
+
 		"persistent-workspaces": {
-			"*": 5
+			"*": 3
 		}
 	},
 	"tray": {
@@ -115,7 +121,7 @@
 	},
 	"cpu": {
 		"interval": 10,
-		"format": "{}% ",
+		"format": "{usage}% ",
 		"max-length": 10
 	},
 	"memory": {
